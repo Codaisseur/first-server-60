@@ -1,6 +1,7 @@
 {
   "development": {
-    "url": "postgres://dgakmxaa:uGycU1fWPF19cZXz1R3JJ6q0LhfkDwP8@abul.db.elephantsql.com/dgakmxaa"
+    "url": "postgres://dgakmxaa:uGycU1fWPF19cZXz1R3JJ6q0LhfkDwP8@abul.db.elephantsql.com/dgakmxaa",
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
