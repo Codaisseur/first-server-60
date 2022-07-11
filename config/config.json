@@ -1,0 +1,19 @@
+{
+  "development": {
+    "url": "postgres://dgakmxaa:uGycU1fWPF19cZXz1R3JJ6q0LhfkDwP8@abul.db.elephantsql.com/dgakmxaa"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
