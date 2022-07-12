@@ -14,6 +14,15 @@ module.exports = {
       important: {
         type: Sequelize.BOOLEAN
       },
+      todoListId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "todoLists",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL"
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
