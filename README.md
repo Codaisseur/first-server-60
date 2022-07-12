@@ -27,7 +27,8 @@ Person <-> Phone numbers
 
 **Many to Many**:
 
-
+students <-> classes
+products <-> user
 
 ### Steps to add relation
 
@@ -41,6 +42,26 @@ Person <-> Phone numbers
 
 **Step 2:** Modify that file to describe the relation
 
+```js
+"use strict";
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.addColumn("todoLists", "userId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "users",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+  },
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.removeColumn("todoLists", "userId");
+  },
+};
+```
 
 **Step 3:** Migrate and check Postico/DBeaver (here you test the migration files)
 
