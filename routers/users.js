@@ -4,14 +4,16 @@ const TodoList = require("../models").todoList;
 const TodoItem = require("../models").todoItem;
 const bcrypt = require("bcrypt");
 const { toJWT } = require("../auth/jwt");
+const authMiddleware = require("../auth/middleware");
 
 const router = new Router();
 
 //get users
 //http :4000/users
-router.get("/", async (request, response, next) => {
+router.get("/", authMiddleware, async (request, response, next) => {
   try {
     const users = await User.findAll();
+    console.log("who made this request???", request.user);
     response.send(users);
   } catch (e) {
     console.log(e.message);
@@ -21,7 +23,7 @@ router.get("/", async (request, response, next) => {
 
 //get one user with lists and items
 //http :4000/users/3
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", authMiddleware, async (req, res, next) => {
   try {
     // 1. req.params.id;
     const userId = req.params.id;
@@ -47,7 +49,7 @@ router.post("/", async (req, res, next) => {
     const encrypted = bcrypt.hashSync(password, 10);
     const newUser = await User.create({ name, email, password: encrypted });
 
-    // delete newUser.password; // look up
+    delete newUser.dataValues["password"];
     res.send(newUser);
   } catch (e) {
     console.log(e.message);
